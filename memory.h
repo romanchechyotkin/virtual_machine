@@ -1,6 +1,8 @@
 #ifndef uman_memory_h
 #define uman_memory_h
 
+#include <stdlib.h>
+
 #include "common.h"
 
 #define GROW_CAPACITY(capacity) \
