@@ -6,6 +6,7 @@
 
 typedef enum {
     OP_CONSTANT,
+    OP_CONSTANT_LONG,
     OP_RETURN,
 } OP_CODE;
 
@@ -19,6 +20,7 @@ typedef struct chunk {
 
 void initChunk(Chunk* chunk);
 void writeChunk(Chunk* chunk, uint8_t opcode, int line);
+void writeConstant(Chunk* chunk, Value value, int line);
 int addConstant(Chunk* chunk, Value value);
 void freeChunk(Chunk* chunk);
 
