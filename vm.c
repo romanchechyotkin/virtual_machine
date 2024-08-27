@@ -16,7 +16,7 @@ static InterpretResult run() {
             case OP_RETURN: {
                 return INTERPRET_OK;
             }
-            case OP_CONSTANT: {
+            case OP_CONSTANT || OP_CONSTANT_LONG: {
                 Value constant = READ_CONSTANT();
                 printValue(constant);
                 printf("\n");
@@ -39,10 +39,13 @@ InterpretResult interpret(Chunk* chunk) {
 void printInterpretResult(InterpretResult res) {
     switch (res) {
     case INTERPRET_OK:
-        return printf("INTERPRET_OK\n");
+        printf("INTERPRET_OK\n");
+        break;
     case INTERPRET_COMPILE_ERROR:
-        return printf("INTERPRET_COMPILE_ERROR\n");
+        printf("INTERPRET_COMPILE_ERROR\n");
+        break;
     case INTERPRET_RUNTIME_ERROR:
-        return printf("INTERPRET_RUNTIME_ERROR\n");
+        printf("INTERPRET_RUNTIME_ERROR\n");
+        break;
     }
 }
