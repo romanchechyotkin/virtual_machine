@@ -9,13 +9,13 @@ int main(int argc, char const *argv[]) {
 
     initChunk(&chunk);
 
-    for (int i = 0; i < 260; i++) {
-        writeChunk(&chunk, OP_RETURN, i+1);
-        writeConstant(&chunk, i, i+1);
-    }
+    writeConstant(&chunk, 123, 123);
+    writeChunk(&chunk, OP_NEGATE, 123);
+    writeChunk(&chunk, OP_RETURN, 123);
 
     disassembleChunk(&chunk, "test chunk #1");
     printInterpretResult(interpret(&chunk));
+    
     freeVM();
     freeChunk(&chunk);
 
