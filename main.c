@@ -16,6 +16,24 @@ int main(int argc, char const *argv[]) {
     disassembleChunk(&chunk, "test chunk #1");
     printInterpretResult(interpret(&chunk));
     
+    freeChunk(&chunk);
+
+    writeConstant(&chunk, 123, 123);
+    writeChunk(&chunk, OP_INC, 123);
+    writeChunk(&chunk, OP_RETURN, 123);
+
+    disassembleChunk(&chunk, "test chunk #2");
+    printInterpretResult(interpret(&chunk));
+
+    freeChunk(&chunk);
+
+    writeConstant(&chunk, 123, 123);
+    writeChunk(&chunk, OP_DEC, 123);
+    writeChunk(&chunk, OP_RETURN, 123);
+
+    disassembleChunk(&chunk, "test chunk #3");
+    printInterpretResult(interpret(&chunk));
+
     freeVM();
     freeChunk(&chunk);
 

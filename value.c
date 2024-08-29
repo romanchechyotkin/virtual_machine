@@ -26,3 +26,15 @@ void freeValueArray(ValueArray* array) {
 void printValue(Value value) {
     printf("%d", value);
 }
+
+Value incValue(Value value) {
+    int v = (int)value;
+    v++;
+    return v;
+}
+
+Value decValue(Value value) {
+    int v = (int)value;
+    v--;
+    return v;
+}

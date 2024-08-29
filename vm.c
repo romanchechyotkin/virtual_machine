@@ -51,6 +51,12 @@ static InterpretResult run() {
             case OP_NEGATE:
                 push(-pop());
                 break;    
+            case OP_INC:
+                push(incValue(pop()));
+                break;
+            case OP_DEC:
+                push(decValue(pop()));
+                break;        
             case OP_CONSTANT ... OP_CONSTANT_LONG: {
                 Value constant = READ_CONSTANT();
                 push(constant);
