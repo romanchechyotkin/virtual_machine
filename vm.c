@@ -26,6 +26,12 @@ Value pop() {
 static InterpretResult run() {
 #define READ_BYTE() (*vm.ip++)
 #define READ_CONSTANT() (vm.chunk->constants.values[READ_BYTE()])
+#define BINARY_OP(op) \
+    do { \
+        int b = pop(); \
+        int a = pop(); \
+        push(a op b); \
+    } while (false)
 
     for (;;) {
 
@@ -57,6 +63,10 @@ static InterpretResult run() {
             case OP_DEC:
                 push(decValue(pop()));
                 break;        
+            case OP_ADD: BINARY_OP(+); break;
+            case OP_SUBTRACT: BINARY_OP(-); break;
+            case OP_MULTIPLY: BINARY_OP(*); break;
+            case OP_DIVIDE: BINARY_OP(/); break;
             case OP_CONSTANT ... OP_CONSTANT_LONG: {
                 Value constant = READ_CONSTANT();
                 push(constant);
@@ -69,6 +79,7 @@ static InterpretResult run() {
 
 #undef READ_BYTE
 #undef READ_CONSTANT
+#undef BINATY_OP
 }
 
 InterpretResult interpret(Chunk* chunk) {
